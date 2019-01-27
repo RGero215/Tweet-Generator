@@ -12,7 +12,7 @@ def words(number_of_words):
         #.3 Select random word
         random_number = random.randint(0, len(words))
         word = words[random_number]
-        #.4 Select random set of words 
+        #.4 Random set of words list 
         new_words_list.append(word)
     #.5 Ouput the sentence
     print(' '.join(new_words_list))
