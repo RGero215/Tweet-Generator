@@ -1,18 +1,32 @@
 import random
-from collections import Counter
 import re
 
-# Define function that takes a number of words and output a sentence with those words
+
+
 def histogram(file_name):
-    #.1 Open and read file words 
+    #.0 Declear an empty dictionary
+    words = {}
+    #.1 Open on read mode  
     file_object = open(file_name, "r", encoding="utf-8-sig")
-    #.2 Words without punctuations
+    #.2 Assigned file read to a variable
     no_punctuation_file = file_object.read()
+    #.3 Use regular expresion to remove puntuation
     no_punctuation_file = re.sub(r'[^\w\s]','',no_punctuation_file)
-    #.3 Storage word count
-    word_count = Counter(no_punctuation_file.split())
-    #.3 Return word_count
-    return word_count
+    #.4 Storage an array of words without puntuations
+    word_count = no_punctuation_file.split()
+    #.5 Itinirate the array of words
+    for word in range(len(word_count)):
+        #.6 if the word is in the list
+        if word_count[word] in words:
+            #.7 Increase the value by 1
+            words[word_count[word]] += 1
+        else:
+            #.8 If not incluede the word as key an 1 as initial value
+            words.update({word_count[word]: 1})
+    print(words)
+    #.9 Return words dictionary
+    return words
+    
 
 
 # Define function that takes and histogram and return a unique word's count
@@ -39,10 +53,10 @@ def frequency(word, histogram):
             #.3 return the value or the frequency total
             print(value)
             return value
-        else:
-            #.4 return a message if the word is not in the histogram
-            print("The word: {} is excluded in this histogram".format(word))
-            return "The word: {} is excluded in this histogram".format(word)
+        
+    #.4 return a message if the word is not in the histogram
+    print("The word: {} is excluded in this histogram".format(word))
+    return "The word: {} is excluded in this histogram".format(word)
 
 
 
@@ -51,4 +65,6 @@ def frequency(word, histogram):
 
 
 if __name__ == "__main__":
+    # histogram("Frankenstein.txt")
+    # unique_words(histogram("Frankenstein.txt"))
     frequency("Melaza", histogram("Frankenstein.txt"))
