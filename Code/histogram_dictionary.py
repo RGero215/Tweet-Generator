@@ -23,7 +23,7 @@ def histogram(file_name):
         else:
             #.8 If not incluede the word as key an 1 as initial value
             words.update({word_count[word]: 1})
-    print(words)
+    # print(words)
     #.9 Return words dictionary
     return words
     
@@ -58,6 +58,27 @@ def frequency(word, histogram):
     print("The word: {} is excluded in this histogram".format(word))
     return "The word: {} is excluded in this histogram".format(word)
 
+# Define function that takes a histogram and output a random word not taking under account the distributions of the words
+def random_word(histogram):
+    #.0 Empty string to store the word
+    word = random.choice(list(histogram.keys()))
+    #.1 Ouput the sentence
+    print(word)
+    return word
+
+# Define a weighted random function 
+def weighted_random(histogram):
+    my_list = []
+    #.1 Itinirate the dictionary
+    for key, value in histogram.items():
+        my_list += [key] * value
+    #.2 select a weighted random choice
+    weighted_random_choice = random.choice(my_list)
+    print(weighted_random_choice)
+    #.3 return weighted random choice
+    return weighted_random_choice
+
+
 
 
 
@@ -67,4 +88,7 @@ def frequency(word, histogram):
 if __name__ == "__main__":
     # histogram("Frankenstein.txt")
     # unique_words(histogram("Frankenstein.txt"))
-    frequency("Melaza", histogram("Frankenstein.txt"))
+    frequency("the", histogram("Frankenstein.txt"))
+    # random_word(histogram("Frankenstein.txt"))
+    weighted_random(histogram("Frankenstein.txt")) 
+    
