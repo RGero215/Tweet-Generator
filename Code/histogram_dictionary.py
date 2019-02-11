@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import random
 import re
 
@@ -14,6 +15,7 @@ def histogram(file_name):
     no_punctuation_file = re.sub(r'[^\w\s]','',no_punctuation_file)
     #.4 Storage an array of words without puntuations
     word_count = no_punctuation_file.split()
+    # print(len(word_count))
     #.5 Itinirate the array of words
     for word in range(len(word_count)):
         #.6 if the word is in the list
@@ -66,7 +68,7 @@ def random_word(histogram):
     print(word)
     return word
 
-# Define a weighted random function 
+# Define a weighted random function with choice
 def weighted_random(histogram):
     my_list = []
     #.1 Itinirate the dictionary
@@ -78,6 +80,31 @@ def weighted_random(histogram):
     #.3 return weighted random choice
     return weighted_random_choice
 
+# Define weighted random with uniform
+def sample(histogram):
+    total = 0
+    cumulative_probability = 0
+
+    for key, value in histogram.items():
+        total += value
+    random_num = random.uniform(0,1)
+    for key, value in histogram.items():
+        cumulative_probability += value / total
+        if cumulative_probability >= random_num:
+            return key
+
+
+
+def multiple_runs(histogram):
+    count_dict = dict()
+
+    for item in histogram.items():
+        count_dict[item[0]] = 0
+    for i in range(0,1000):
+        # count_dict[weighted_random(histogram)] += 1
+        count_dict[sample(histogram)] += 1
+    
+    print(count_dict)
 
 
 
@@ -88,7 +115,15 @@ def weighted_random(histogram):
 if __name__ == "__main__":
     # histogram("Frankenstein.txt")
     # unique_words(histogram("Frankenstein.txt"))
-    frequency("the", histogram("Frankenstein.txt"))
     # random_word(histogram("Frankenstein.txt"))
-    weighted_random(histogram("Frankenstein.txt")) 
+    # weighted_random(histogram("Frankenstein.txt"))
+    # multiple_runs(weighted_random(histogram("Frankenstein.txt")))
+    multiple_runs(histogram("Frankenstein.txt"))
+    
+
+    frequency("was", histogram("Frankenstein.txt"))
+    frequency("the", histogram("Frankenstein.txt"))
+    frequency("PG", histogram("Frankenstein.txt"))
+    frequency("was", histogram("Frankenstein.txt"))
+
     

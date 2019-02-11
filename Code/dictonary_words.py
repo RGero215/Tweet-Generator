@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import random
 
 # Define function that takes a number of words and output a sentence with those words

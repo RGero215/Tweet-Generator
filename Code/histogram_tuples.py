@@ -33,6 +33,7 @@ def histogram(file_name):
     merge = [(words[i], frequency[i]) for i in range(0, len(words))]
     # print(merge)
     #.12 Return words dictionary
+    # print(type(merge[1]))
     return merge
     
 
@@ -74,9 +75,9 @@ def frequency(input_word, histogram):
 
 if __name__ == "__main__":
     # histogram("one fish two fish red fish blue fish")
-    # histogram("Frankenstein.txt")
-    unique_words(histogram("Frankenstein.txt"))
-    frequency("Frankenstein", histogram("Frankenstein.txt"))
+    histogram("Frankenstein.txt")
+    # unique_words(histogram("Frankenstein.txt"))
+    # frequency("Frankenstein", histogram("Frankenstein.txt"))
 
 
 
