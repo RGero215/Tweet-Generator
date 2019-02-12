@@ -27,8 +27,8 @@ def clear():
 
 def menu_loop():
     """ Show the menu """
-    choice = None
-
+    choice = 'q'
+    
     while choice != 'q':
         clear()
         print("Enter 'q' to quit.")
