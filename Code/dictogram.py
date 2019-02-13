@@ -5,13 +5,13 @@ from __future__ import division, print_function  # Python 2 and 3 compatibility
 
 class Dictogram(dict):
     """Dictogram is a histogram implemented as a subclass of the dict type."""
-
     def __init__(self, word_list=None):
         """Initialize this histogram as a new dict and count given words."""
         super(Dictogram, self).__init__()  # Initialize this as a new dict
         # Add properties to track useful word counts for this histogram
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
+        self.word_list = word_list
         # Count words in given list, if any
         if word_list is not None:
             for word in word_list:
@@ -20,11 +20,21 @@ class Dictogram(dict):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
+        if word in self:
+            self[word] += count
+            self.tokens += count
+        else:
+            self[word] = count
+            self.types += 1
+            self.tokens += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-
+        if word in self:
+            return self[word]
+        else:
+            return 0
 
 def print_histogram(word_list):
     print('word list: {}'.format(word_list))
@@ -59,3 +69,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
