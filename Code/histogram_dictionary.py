@@ -2,7 +2,16 @@
 import random
 import re
 
-
+def word_list(file_name):
+    """Function takes a file and return a word list no puntuations"""
+    words = {}                       
+    file_object = open(file_name, "r", encoding="utf-8-sig")
+    no_punctuation_file = file_object.read()
+    #.3 Use regular expresion to remove puntuation
+    no_punctuation_file = re.sub(r'[^\w\s]','',no_punctuation_file)
+    #.4 Storage an array of words without puntuations
+    word_list = no_punctuation_file.split()
+    return word_list
 
 def histogram(file_name):
     """ Function takes a file name as an argument and return an histogram of words and frequency """
