@@ -21,6 +21,7 @@ def markov_chain(word_list, number_of_words):
                     new_list.append(word_list[index + 1])
             except IndexError:
                 ended = True
+                break
     
         if ended == False:
             histogram = Dictogram(new_list)
@@ -29,6 +30,8 @@ def markov_chain(word_list, number_of_words):
             print('----------------------------')
             sentence.append(current_word)
             new_list = []
+        else:
+            break
     print(' '.join(sentence))
 
 if __name__ == "__main__":
