@@ -49,12 +49,13 @@ class LinkedList(object):
         return items  # O(1) time to return list
 
     def is_empty(self):
-        """Return a boolean indicating whether this linked list is empty."""
+        """Return a boolean indicating whether this linked list is empty. Runs on O(1) time"""
         return self.head is None
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?
+        we have to iterate over all n nodes and count 1 for each"""
         # TODO: Loop through all nodes and count one for each
         current = self.head
         count = 0
@@ -66,28 +67,31 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) Why and under what conditions?
+        We only change the tail"""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         new_node = Node(item)
         current = self.head
-        if not current:
-            new_node.next = self.head
+        if not current: # if empty
+            # new_node.next = self.head
             self.head = new_node
             self.tail = new_node
         else:
-            while current.next:
-                current = current.next
+            # while current.next:
+            #     current = current.next
                 
                 
-            current.next = new_node
+            # current.next = new_node
+            # self.tail = new_node
+            self.tail.next = new_node
             self.tail = new_node
-            
 
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) Why and under what conditions?
+         We only change the first node and never loop the rest."""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
         new_node = Node(item)
@@ -101,8 +105,10 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) Why and under what conditions?
+        if it's near to head in the best case.
+        TODO: Worst case running time: O(n) Why and under what conditions? 
+        if the node is at the end"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
         current = self.head
@@ -116,8 +122,10 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) Why and under what conditions?
+        if it's near the head in the best case.
+        TODO: Worst case running time: O(n) Why and under what conditions?
+        if the node is at the end will have to traverse the entire list"""
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
