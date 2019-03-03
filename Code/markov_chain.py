@@ -42,4 +42,7 @@ def markov_chain(word_list):
 
 if __name__ == "__main__":
     # markov_chain(word_list("Frankenstein.txt"))
-    markov_chain('how to find keys by value in dictionary and how to look if certain value exists'.split())
+    # markov_chain('how to find keys by value in dictionary and how to look if certain value exists'.split())
+    stats = ["curveball", "single", "fastball", "double", "changeup", "home run", "slider", "triple", "fastball", "out", "fastball", "out", "curveball", "home run", "fastball", "triple", "changeup", "out"]
+    markov_chain(stats)
+

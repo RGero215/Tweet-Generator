@@ -73,8 +73,9 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(1) Why and under what conditions?
-        In this case it's just assigning and returning so it is constant time"""
+        TODO: Running time: O(n) where n = l or O(l) Why and under what conditions?
+        because of the find method we need to traverse the linklist and in the best scenario 
+        if the item is close to the head it can be O(1)"""
         # TODO: Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -88,12 +89,14 @@ class HashTable(object):
 
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(1) Why and under what conditions?
-        this is also constant because it's assigning and returning"""
+        TODO: Running time: O(1) best case scenario Why and under what conditions?
+        this is also constant because it's assigning and returning asuming the key is close to the head
+        in the linkedList but O(n) in worse scenario cause the find method will need to traverse the linkList
+        where n = l O(l)"""
         # TODO: Find bucket where given key belongs
         bucket = self.buckets[self._bucket_index(key)]
         # TODO: Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_value: key_value[0] == key)
+        entry = bucket.find(lambda key_value: key_value[0] == key) #O(l) with l = bucket.length()
         # TODO: If found, return value associated with given key
         if entry is not None:
             return entry[1]
@@ -104,9 +107,7 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(n) Why and under what conditions?
-        this is linear because if there's an entry it has to traverse at least
-        one time"""
+        TODO: Running time: O(1) best case, O(n) worse case where n = l """
         #Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -116,6 +117,7 @@ class HashTable(object):
         # TODO: Otherwise, insert given key-value entry into bucket
         # entry = (key, value)
         # bucket.append(entry)
+
         if entry:
             current_node = bucket.head
             while current_node is not None:
