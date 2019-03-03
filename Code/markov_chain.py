@@ -75,6 +75,7 @@ def markov_chain(word_list, number_of_words):
     return ' '.join(sentence)
 
 if __name__ == "__main__":
+    print(sample(histogram("Frankenstein.txt")))
     sentence = markov_chain(word_list("Frankenstein.txt"), 15)
     sentence
     
