@@ -66,8 +66,8 @@ class HashTable(object):
         # TODO: Loop through all buckets
         # TODO: Count number of key-value entries in each bucket
         self.size = 0
-        for bucket in self.buckets:
-            self.size += bucket.length()
+        for bucket in self.buckets: # O(b) buckets itarations 
+            self.size += bucket.length() # O(l) avg length list
             # for key, value in bucket.items():
             #     self.size += 1
         return self.size
