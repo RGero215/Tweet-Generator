@@ -71,6 +71,7 @@ class HashTable(object):
             # for key, value in bucket.items():
             #     self.size += 1
         return self.size
+        #overall O(n)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
