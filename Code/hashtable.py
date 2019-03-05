@@ -67,8 +67,9 @@ class HashTable(object):
         # TODO: Count number of key-value entries in each bucket
         self.size = 0
         for bucket in self.buckets:
-            for key, value in bucket.items():
-                self.size += 1
+            self.size += bucket.length()
+            # for key, value in bucket.items():
+            #     self.size += 1
         return self.size
 
     def contains(self, key):
@@ -141,49 +142,54 @@ class HashTable(object):
         # TODO: If found, delete entry associated with given key
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
-        current_node = bucket.head
-        previous_node = None
-        found = False
+        # current_node = bucket.head
+        # previous_node = None
+        # found = False
 
-        while current_node is not None:
-            # If the head is the target node
-            if bucket.head.data[0] == key: 
-                # If the head points to a node 
-                if bucket.head.next is not None:
-                    # Reassign the head  
-                    bucket.head = bucket.head.next  
-                    found = True
-                    self.size -= 1
-                    break
-                else:
-                    # The list only have one node
-                    bucket.head = None  
-                    bucket.tail = None
-                    found = True
-                    self.size = 0
-                    break
-            # found the target node and the node is not the head
-            elif current_node.data[0] == key:
-                # Is the tail the targeted node?  
-                if current_node == bucket.tail: 
-                    previous_node.next = None
-                    bucket.tail = previous_node
-                    found = True
-                    self.size -= 1
-                    break
+        # while current_node is not None:
+        #     # If the head is the target node
+        #     if bucket.head.data[0] == key: 
+        #         # If the head points to a node 
+        #         if bucket.head.next is not None:
+        #             # Reassign the head  
+        #             bucket.head = bucket.head.next  
+        #             found = True
+        #             self.size -= 1
+        #             break
+        #         else:
+        #             # The list only have one node
+        #             bucket.head = None  
+        #             bucket.tail = None
+        #             found = True
+        #             self.size = 0
+        #             break
+        #     # found the target node and the node is not the head
+        #     elif current_node.data[0] == key:
+        #         # Is the tail the targeted node?  
+        #         if current_node == bucket.tail: 
+        #             previous_node.next = None
+        #             bucket.tail = previous_node
+        #             found = True
+        #             self.size -= 1
+        #             break
 
-                else:  # The targeted node points to something
-                    previous_node.next = current_node.next
-                    found = True
-                    self.size -= 1
-                    break
-            else:  # Not the target node
-                previous_node = current_node
-                current_node = current_node.next
+        #         else:  # The targeted node points to something
+        #             previous_node.next = current_node.next
+        #             found = True
+        #             self.size -= 1
+        #             break
+        #     else:  # Not the target node
+        #         previous_node = current_node
+        #         current_node = current_node.next
 
-        if not found:
-            raise KeyError('Key not found: {}'.format(key))
+        # if not found:
+        #     raise KeyError('Key not found: {}'.format(key))
         
+        if entry == None:
+            raise KeyError('Key not found: {}'.format(key))
+        else:
+            bucket.delete(entry)
+            self.size -= 1
 
 
 def test_hash_table():
