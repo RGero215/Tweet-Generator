@@ -1,0 +1,30 @@
+What are the key features of the application? Are these clearly separated into their own files, classes, and/or modules?
+
+Files are separated into their own files and classes and can be imported to other files 
+that need this functions or run separated for testing.
+
+Are the names of files, modules, functions, and variables appropriate and accurate? Would a new programmer be able to understand the names without too much contextual knowledge?
+
+All the names are accurate and new programmers can look at this code and understand 
+what it does by looking at the docstring and variables names.
+
+What are the scopes of variables and are they appropriate for their use case? If there are global variables, why are they needed?
+
+Variables are store locally within their functions and classes following encapsulation protocol 
+for easy way to debug if something goes wrong.
+
+Are the functions small and clearly specified, with as few side effects as possible?
+
+Functions are limitted to handle one specific task to prevent side effects.
+
+Are there functions that could be better organized in an Object-Oriented Programming style by defining them as methods of a class?
+
+Functions that need to be organized in Object Oriented Programming style are defined as methods
+
+Can files be used as both modules and as scripts?
+
+Files Can be use as both modules and scripts
+
+Do modules all depend on each other or can they be used independently?
+
+Modules are independent from others.
