@@ -117,19 +117,21 @@ class HashTable(object):
         entry = bucket.find(lambda key_value: key_value[0] == key)
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
-        # entry = (key, value)
-        # bucket.append(entry)
-
         if entry:
-            current_node = bucket.head
-            while current_node is not None:
-                if current_node.data[0] == key:
-                    current_node.data = (key, value)
-                    break
-                current_node = current_node.next
-        else:
-            bucket.append((key, value))
-            self.size += 1
+            bucket.delete(entry)
+        entry = (key, value)
+        bucket.append(entry)
+
+        # if entry:
+        #     current_node = bucket.head
+        #     while current_node is not None:
+        #         if current_node.data[0] == key:
+        #             current_node.data = (key, value)
+        #             break
+        #         current_node = current_node.next
+        # else:
+        #     bucket.append((key, value))
+        #     self.size += 1
         
 
     def delete(self, key):
